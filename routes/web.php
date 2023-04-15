@@ -49,3 +49,14 @@ Route::prefix('/week2')->group(function () {
     Route::resource('/week3', 'App\Http\Controllers\week2\UserController');
 });
 
+// Week 3
+Route::prefix('/week3')->group(function () {
+    // route untuk menampilkan halaman home
+    Route::get('/', fn () => view('week3.home'));
+
+    // route untuk menampilkan halaman home dengan layout
+    Route::get('/home', fn () => view('week3.views.home'));
+
+    // route untuk menampilkan halaman about me
+    Route::get('/about', 'App\Http\Controllers\week3\AboutController@index');
+});
