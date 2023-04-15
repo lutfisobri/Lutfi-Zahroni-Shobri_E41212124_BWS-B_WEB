@@ -13,27 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', fn () => view('welcome'));
-// Route::resource('user', 'ManagementUserController');
-Route::get('/', fn () => view('week4.home'));
-Route::get('/admin', fn () => view('week4.admin.home'));
+/**
+ * Route adalah sebuah alamat URL yang dapat diakses oleh pengguna
+ * 
+ * Example:
+ * ```php
+ * Route::get('/', function () {
+ *    return view('welcome');
+ * });
+ * ```
+ * Maka ketika pengguna mengakses alamat http://localhost:8000/ maka akan menampilkan view welcome
+ * 
+ * 
+ * @see \Illuminate\Routing\Route
+ */
+function routes() {}
 
-Route::name('auth')->group(function() {
-    Route::get('/login', fn () => view('week6.login'));
-    Route::get('/register', fn () => view('week6.register'));
-    Route::name('login')->post('/login', 'App\Http\Controllers\week6\Employe@login');
-    Route::post('/register');
+// Week 2
+Route::prefix('/week2')->group(function () {
+    // route untuk menampilkan Hello World
+    Route::get('/', function () {
+        return "Hello World";
+    });
+
+    // route untuk memanggil UserController
+    Route::get('/user', 'App\Http\Controllers\week2\Week2Controller@index');
+
+    // route untuk memanggil UserController dengan parameter
+    Route::get('/user/{id}', 'App\Http\Controllers\week2\Week2Controller@show');
+
+    // route untuk menampilkan halaman about
+    Route::get('/about', fn () => view('week2.about'));
+
+    // route resource untuk user
+    Route::resource('/week3', 'App\Http\Controllers\week2\UserController');
 });
 
-Route::prefix('/kerja')->group(function () {
-    Route::get('/', 'App\Http\Controllers\week9\PengalamanKerja@index');
-    Route::get('/create', 'App\Http\Controllers\week9\PengalamanKerja@create');
-    Route::post('/store', 'App\Http\Controllers\week9\PengalamanKerja@store');
-});
-
-// Route::group(
-//     Route::get('/login', fn () => view('week6.login')),
-//     Route::get('/register', fn () => view('week6.register')),
-//     Route::post('/login'),
-//     Route::post('/register'),
-// );
