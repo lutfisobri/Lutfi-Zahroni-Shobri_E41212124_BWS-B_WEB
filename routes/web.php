@@ -60,3 +60,9 @@ Route::prefix('/week3')->group(function () {
     // route untuk menampilkan halaman about me
     Route::get('/about', 'App\Http\Controllers\week3\AboutController@index');
 });
+
+// Week 4
+Route::prefix('/week4')->group(function () {
+    Route::get('/', fn () => view('week4.home'));
+    Route::get('/admin', fn () => view('week4.admin.home'));
+});
