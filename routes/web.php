@@ -63,6 +63,27 @@ Route::prefix('/week3')->group(function () {
 
 // Week 4
 Route::prefix('/week4')->group(function () {
+    // route untuk menampilkan halaman landing page
     Route::get('/', fn () => view('week4.home'));
+
+    // route untuk menampilkan halaman home dengan admin panel
     Route::get('/admin', fn () => view('week4.admin.home'));
+});
+
+// Week 6
+Route::prefix('/week6')->group(function () {
+    // route untuk menampilkan halaman login
+    Route::get('/login', fn () => view('week6.login'))->name('week6.view.login')->middleware('guest');
+
+    // route dengan method post untuk login yang akan memanggil AuthController
+    Route::post('/login', 'App\Http\Controllers\week6\AuthController@login')->name('week6.login');
+
+    // route untuk menampilkan halaman register
+    Route::get('/register', fn () => view('week6.register'))->name('week6.view.register')->middleware('guest');
+
+    // route dengan method post untuk register yang akan memanggil AuthController
+    Route::post('/register', 'App\Http\Controllers\week6\AuthController@register')->name('week6.register');
+
+    // route untuk menampilkan halaman home
+    Route::get('/home', fn () => view('week4.admin.home'))->name('week6.view.home')->middleware('auth');
 });

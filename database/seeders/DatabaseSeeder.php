@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // memanggil seeder lain yang ada di folder seeders dengan cara memanggil method call dan mengirimkan array dari kelas seeder yang akan dipanggil
+        $this->call([
+            DetailProfileSeeder::class,
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // bisa juga membuat seeder baru dengan cara menggunakan model atau bisa juga langsung menggunakan query builder
+        // menggunakan model
+        User::insert([
+            'name' => 'Kateru Riyu',
+            'username' => 'kateruriyu',
+            'email' => 'kateruriyu@gmail.com',
+            'password' => bcrypt('kateruriyu'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
