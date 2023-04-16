@@ -199,6 +199,7 @@ return [
          * Custom Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -217,6 +218,13 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    /**
+     * Custom Aliases...
+     */
+    // debugbar
     'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+
+    // image
+    'Image' => Intervention\Image\Facades\Image::class,
 
 ];

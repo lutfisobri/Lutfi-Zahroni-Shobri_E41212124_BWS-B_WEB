@@ -139,6 +139,7 @@ Route::prefix('/week9')->group(function () {
     Route::get('/dashboard', fn()=> view('admin.dashboard'));
 });
 
+// week 10
 Route::prefix('/week10')->group(function () {
     Route::prefix('/session')->group(function () {
         // route untuk memanggil controller dan membuat session
@@ -173,4 +174,31 @@ Route::prefix('/week10')->group(function () {
         // jika parameter name tidak diisi maka akan menampilkan error 404
         Route::get('/name/{name?}', 'App\Http\Controllers\week10\ErrorController@name')->name('week10.error.name');
     });
+});
+
+// week 11
+Route::prefix('/week11')->group(function(){
+    // route untuk menampilkan halaman upload image
+    Route::get('/image', fn() => view('week11.upload'))->name('week11.image');
+
+    // route untuk upload image
+    Route::post('/image/upload', 'App\Http\Controllers\week11\ImageController@upload')->name('week11.image.upload');
+
+    // route untuk menampilkan halaman resize image
+    Route::get('/image/resize', fn() => view('week11.resize'))->name('week11.image.resize.show');
+
+    // route untuk resize image
+    Route::post('/image/resize', 'App\Http\Controllers\week11\ImageController@resize')->name('week11.image.resize');
+
+    // route untuk menampilkan halaman upload multiple image
+    Route::get('/image/dropzone', fn() => view('week11.dropzone'))->name('week11.dropzone');
+
+    // route untuk upload multiple image
+    Route::post('/image/dropzone/upload', 'App\Http\Controllers\week11\ImageController@dropzone')->name('week11.dropzone.upload');
+
+    // route untuk menampilkan halaman upload pdf
+    Route::get('/pdf', fn() => view('week11.pdf'))->name('week11.pdf');
+
+    // route untuk upload pdf
+    Route::post('/pdf/store', 'App\Http\Controllers\week11\PdfController@store')->name('week11.pdf.store');
 });
