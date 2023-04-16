@@ -87,3 +87,36 @@ Route::prefix('/week6')->group(function () {
     // route untuk menampilkan halaman home
     Route::get('/home', fn () => view('week4.admin.home'))->name('week6.view.home')->middleware('auth');
 });
+
+
+// week 9
+Route::prefix('/week9')->group(function () {
+    Route::prefix('/kerja')->group(function() {
+        // route untuk menampilkan halaman index
+        Route::get('/', 'App\Http\Controllers\week9\PengalamanKerja@index')->name('week9.kerja.index');
+
+        // route untuk menampilkan halaman create
+        Route::get('/create', 'App\Http\Controllers\week9\PengalamanKerja@create')->name('week9.kerja.create');
+
+        // route untuk menyimpan data
+        Route::post('/store', 'App\Http\Controllers\week9\PengalamanKerja@store')->name('week9.kerja.store');
+
+        // route untuk menampilkan halaman edit
+        Route::get('/edit/{id}', 'App\Http\Controllers\week9\PengalamanKerja@edit')->name('week9.kerja.edit');
+
+        // route untuk mengupdate data
+        Route::post('/update/{id}', 'App\Http\Controllers\week9\PengalamanKerja@update')->name('week9.kerja.update');
+
+        // route untuk menghapus data
+        Route::delete('/delete/{id}', 'App\Http\Controllers\week9\PengalamanKerja@delete')->name('week9.kerja.delete');
+    });
+
+    
+
+    Route::get('/logout', function () {
+        auth()->logout();
+        return redirect()->route('week6.view.login');
+    });
+
+    Route::get('/dashboard', fn()=> view('admin.dashboard'));
+});
