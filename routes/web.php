@@ -111,7 +111,25 @@ Route::prefix('/week9')->group(function () {
         Route::delete('/delete/{id}', 'App\Http\Controllers\week9\PengalamanKerja@delete')->name('week9.kerja.delete');
     });
 
-    
+    Route::prefix('/pendidikan')->group(function() {
+        // route untuk menampilkan halaman index
+        Route::get('/', 'App\Http\Controllers\week9\RiwayatController@index')->name('week9.pendidikan.index');
+
+        // route untuk menampilkan halaman create
+        Route::get('/create', 'App\Http\Controllers\week9\RiwayatController@create')->name('week9.pendidikan.create');
+
+        // route untuk menyimpan data
+        Route::post('/store', 'App\Http\Controllers\week9\RiwayatController@store')->name('week9.pendidikan.store');
+
+        // route untuk menampilkan halaman edit
+        Route::get('/edit/{id}', 'App\Http\Controllers\week9\RiwayatController@edit')->name('week9.pendidikan.edit');
+
+        // route untuk mengupdate data
+        Route::post('/update/{id}', 'App\Http\Controllers\week9\RiwayatController@update')->name('week9.pendidikan.update');
+
+        // route untuk menghapus data
+        Route::delete('/delete/{id}', 'App\Http\Controllers\week9\RiwayatController@destroy')->name('week9.pendidikan.delete');
+    });
 
     Route::get('/logout', function () {
         auth()->logout();
