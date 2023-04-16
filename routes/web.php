@@ -138,3 +138,39 @@ Route::prefix('/week9')->group(function () {
 
     Route::get('/dashboard', fn()=> view('admin.dashboard'));
 });
+
+Route::prefix('/week10')->group(function () {
+    Route::prefix('/session')->group(function () {
+        // route untuk memanggil controller dan membuat session
+        Route::get('/create', 'App\Http\Controllers\week10\SessionController@create')->name('week10.session.create');
+
+        // route untuk menampilkan session
+        Route::get('/show', 'App\Http\Controllers\week10\SessionController@show')->name('week10.session.show');
+
+        // route untuk menghapus session
+        Route::get('/delete', 'App\Http\Controllers\week10\SessionController@delete')->name('week10.session.delete');
+    });
+
+    Route::prefix('/request')->group(function () {
+        // route untuk menangkap request dari url dengan parameter name
+        Route::get('/user/{name}', 'App\Http\Controllers\week10\RequestController@index')->name('week10.request.index');
+
+        // route untuk menangkap request dari url dengan parameter name
+        Route::get('/segment/{name}', 'App\Http\Controllers\week10\RequestController@segment')->name('week10.request.segment');
+
+        // route untuk menampilkan halaman form
+        Route::get('/formulir', 'App\Http\Controllers\week10\RequestController@formulir')->name('week10.request.formulir');
+
+        // route untuk menangkap request dari form
+        Route::post('/formulir/proses', 'App\Http\Controllers\week10\RequestController@proses')->name('week10.request.proses');
+    });
+
+    Route::prefix('/error')->group(function(){
+        // route untuk menampilkan halaman error internal server error 500
+        Route::get('/test', 'App\Http\Controllers\week10\ErrorController@server')->name('week10.error.500');
+
+        // route untuk menampilkan halaman name dengan parameter name
+        // jika parameter name tidak diisi maka akan menampilkan error 404
+        Route::get('/name/{name?}', 'App\Http\Controllers\week10\ErrorController@name')->name('week10.error.name');
+    });
+});
