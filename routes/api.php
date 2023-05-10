@@ -17,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// get all data
+Route::get('/', 'App\Http\Controllers\week12\ApiPendidikan@getAll');
+
+// get data by id
+Route::get('/{id}', 'App\Http\Controllers\week12\ApiPendidikan@get');
+
+// insert data
+Route::post('/', 'App\Http\Controllers\week12\ApiPendidikan@insert');
+
+// update data
+Route::put('/{id}', 'App\Http\Controllers\week12\ApiPendidikan@update');
+
+// delete data
+Route::delete('/{id}', 'App\Http\Controllers\week12\ApiPendidikan@delete');
